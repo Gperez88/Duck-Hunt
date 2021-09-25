@@ -5,37 +5,30 @@
 [ext_resource path="res://assets/sprites/mon_duck.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2, 756, 960, 640 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 40, 1398, 813, 640 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 964, 1765, 943, 273 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 964, 1579, 799, 184 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2, 509, 960, 245 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2, 371, 960, 136 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2, 254, 960, 115 )
 
@@ -95,17 +88,11 @@ offset_right = 980
 move_to = 1
 
 [node name="GrassSprite" type="Sprite" parent="."]
-position = Vector2( 480, 465 )
+position = Vector2( 480, 467 )
 texture = SubResource( 6 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="GroundSprite" type="Sprite" parent="."]
-position = Vector2( 480, 582 )
+position = Vector2( 480, 583.794 )
 texture = SubResource( 7 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Guide" type="Position2D" parent="."]

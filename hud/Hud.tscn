@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/sprites/ui_sprite_pack.png" type="Texture" id=1]
+[ext_resource path="res://scenes/wold/hit_duck/HitDuck.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/wold/bullet/Bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Kenney Rocket Square.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/themes/theme.tres" type="Theme" id=5]
+[ext_resource path="res://hud/Hud.gd" type="Script" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 2, 2, 859, 52 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 4 )
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="BoardTexture" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -429.5
+margin_top = -68.0
+margin_right = 429.5
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DuckHits" type="Node" parent="."]
+
+[node name="DuckHitOne" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 391, 590 )
+
+[node name="DuckHitTwo" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 416, 590 )
+
+[node name="DuckHitThree" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 440, 590 )
+
+[node name="DuckHitFour" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 465, 590 )
+
+[node name="DuckHitFive" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 489, 590 )
+
+[node name="DuckHitSix" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 514, 590 )
+
+[node name="DuckHitSeven" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 539, 590 )
+
+[node name="DuckHitEight" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 564, 590 )
+
+[node name="DuckHitNine" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 589, 590 )
+
+[node name="DuckHitTen" parent="DuckHits" instance=ExtResource( 2 )]
+position = Vector2( 614, 590 )
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="BulletThree" parent="Bullets" instance=ExtResource( 3 )]
+position = Vector2( 69.2137, 587.189 )
+
+[node name="BulletTwo" parent="Bullets" instance=ExtResource( 3 )]
+position = Vector2( 93.2137, 587.189 )
+
+[node name="BulletOne" parent="Bullets" instance=ExtResource( 3 )]
+position = Vector2( 117.214, 587.189 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 757.49
+margin_top = 571.689
+margin_right = 901.49
+margin_bottom = 601.689
+theme = ExtResource( 5 )
+custom_fonts/font = SubResource( 2 )
+text = "00000000"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
