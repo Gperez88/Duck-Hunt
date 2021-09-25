@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_pack.png-119a2c774935918c416a2ad5518814ce.stex"
+path="res://.import/mon_duck.png-5ae9e106b3bf719ba1dc91a544bb6c7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sprite_pack.png"
-dest_files=[ "res://.import/sprite_pack.png-119a2c774935918c416a2ad5518814ce.stex" ]
+source_file="res://res/sprites/mon_duck.png"
+dest_files=[ "res://.import/mon_duck.png-5ae9e106b3bf719ba1dc91a544bb6c7d.stex" ]
 
 [params]
 

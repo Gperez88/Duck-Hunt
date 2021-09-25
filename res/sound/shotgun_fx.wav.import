@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shotgun_fx.wav-15d504901e61582218ad43689e2f13c6.sample"
+path="res://.import/shotgun_fx.wav-bdf915723d130b568d6315fbbf4a6977.sample"
 
 [deps]
 
-source_file="res://assets/sound/shotgun_fx.wav"
-dest_files=[ "res://.import/shotgun_fx.wav-15d504901e61582218ad43689e2f13c6.sample" ]
+source_file="res://res/sound/shotgun_fx.wav"
+dest_files=[ "res://.import/shotgun_fx.wav-bdf915723d130b568d6315fbbf4a6977.sample" ]
 
 [params]
 

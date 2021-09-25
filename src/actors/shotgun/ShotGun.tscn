@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/actors/shotgun/ShotGun.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 5 )
+
+[node name="ShotGun" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FlashColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_right = 960.0
+margin_bottom = 640.0
+color = Color( 1, 1, 1, 0.27451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_ShotTimer_timeout"]

@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Duck Hunt"
-run/main_scene="res://scenes/wold/Wold.tscn"
+run/main_scene="res://src/scenes/wold/Wold.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalUtils="*res://src/globals/autoload/GlobalUtils.gd"
 
 [display]
 
