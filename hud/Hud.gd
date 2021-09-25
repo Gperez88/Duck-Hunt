@@ -17,7 +17,7 @@ onready var duck_hits = [
 	$DuckHits/DuckHitFour,
 	$DuckHits/DuckHitFive,
 	$DuckHits/DuckHitSix,
-	$DuckHits/DuckHitSevem,
+	$DuckHits/DuckHitSeven,
 	$DuckHits/DuckHitOne,
 	$DuckHits/DuckHitEight,
 	$DuckHits/DuckHitNine,
