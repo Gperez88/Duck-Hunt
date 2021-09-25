@@ -1,0 +1,328 @@
+
+sprite_pack.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 2, 756
+  size: 960, 640
+  orig: 960, 640
+  offset: 0, 0
+  index: -1
+big_cloud
+  rotate: false
+  xy: 2, 1398
+  size: 960, 640
+  orig: 960, 640
+  offset: 0, 0
+  index: -1
+dog_run_one
+  rotate: false
+  xy: 964, 1142
+  size: 171, 146
+  orig: 171, 146
+  offset: 0, 0
+  index: -1
+dog_run_three
+  rotate: false
+  xy: 964, 1429
+  size: 183, 148
+  orig: 183, 148
+  offset: 0, 0
+  index: -1
+dog_run_two
+  rotate: false
+  xy: 964, 1290
+  size: 180, 137
+  orig: 180, 137
+  offset: 0, 0
+  index: -1
+dog_run_two_fie
+  rotate: false
+  xy: 1765, 1664
+  size: 110, 99
+  orig: 110, 99
+  offset: 0, 0
+  index: -1
+dog_run_two_four
+  rotate: false
+  xy: 1909, 1885
+  size: 123, 153
+  orig: 123, 153
+  offset: 0, 0
+  index: -1
+dog_run_two_one
+  rotate: false
+  xy: 214, 113
+  size: 191, 139
+  orig: 191, 139
+  offset: 0, 0
+  index: -1
+dog_run_two_three
+  rotate: false
+  xy: 2, 86
+  size: 210, 166
+  orig: 210, 166
+  offset: 0, 0
+  index: -1
+dog_run_two_two
+  rotate: false
+  xy: 1149, 1438
+  size: 188, 139
+  orig: 188, 139
+  offset: 0, 0
+  index: -1
+duck_easy_dead_left
+  rotate: false
+  xy: 1065, 974
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_easy_dead_right
+  rotate: false
+  xy: 174, 2
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_easy_shot
+  rotate: false
+  xy: 1765, 1586
+  size: 84, 76
+  orig: 84, 76
+  offset: 0, 0
+  index: -1
+duck_easy_side_one
+  rotate: false
+  xy: 407, 144
+  size: 100, 108
+  orig: 100, 108
+  offset: 0, 0
+  index: -1
+duck_easy_side_three
+  rotate: false
+  xy: 509, 144
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_easy_side_two
+  rotate: false
+  xy: 1440, 1469
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_easy_up_one
+  rotate: false
+  xy: 964, 417
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_easy_up_three
+  rotate: false
+  xy: 964, 518
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_easy_up_two
+  rotate: false
+  xy: 964, 316
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_hard_dead_left
+  rotate: false
+  xy: 889, 170
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_hard_dead_right
+  rotate: false
+  xy: 1731, 1495
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_hard_shot
+  rotate: false
+  xy: 2, 8
+  size: 84, 76
+  orig: 84, 76
+  offset: 0, 0
+  index: -1
+duck_hard_side_one
+  rotate: false
+  xy: 964, 1032
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_hard_side_three
+  rotate: false
+  xy: 1909, 1775
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_hard_side_two
+  rotate: false
+  xy: 610, 144
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_hard_up_one
+  rotate: false
+  xy: 964, 720
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_hard_up_three
+  rotate: false
+  xy: 1642, 1478
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_hard_up_two
+  rotate: false
+  xy: 711, 153
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_medium_dead_left
+  rotate: false
+  xy: 1780, 1502
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_medium_dead_right
+  rotate: false
+  xy: 1065, 1058
+  size: 47, 82
+  orig: 47, 82
+  offset: 0, 0
+  index: -1
+duck_medium_shot
+  rotate: false
+  xy: 88, 8
+  size: 84, 76
+  orig: 84, 76
+  offset: 0, 0
+  index: -1
+duck_medium_side_one
+  rotate: false
+  xy: 1339, 1469
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_medium_side_three
+  rotate: false
+  xy: 1541, 1469
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_medium_side_two
+  rotate: false
+  xy: 964, 922
+  size: 99, 108
+  orig: 99, 108
+  offset: 0, 0
+  index: -1
+duck_medium_up_one
+  rotate: false
+  xy: 964, 821
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_medium_up_three
+  rotate: false
+  xy: 800, 153
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+duck_medium_up_two
+  rotate: false
+  xy: 964, 619
+  size: 87, 99
+  orig: 87, 99
+  offset: 0, 0
+  index: -1
+frog_flying_one
+  rotate: false
+  xy: 571, 102
+  size: 80, 40
+  orig: 80, 40
+  offset: 0, 0
+  index: -1
+frog_flying_three
+  rotate: false
+  xy: 489, 102
+  size: 80, 40
+  orig: 80, 40
+  offset: 0, 0
+  index: -1
+frog_flying_two
+  rotate: false
+  xy: 407, 102
+  size: 80, 40
+  orig: 80, 40
+  offset: 0, 0
+  index: -1
+frog_shoted
+  rotate: false
+  xy: 964, 261
+  size: 88, 53
+  orig: 88, 53
+  offset: 0, 0
+  index: -1
+grass
+  rotate: false
+  xy: 2, 371
+  size: 960, 136
+  orig: 960, 136
+  offset: 0, 0
+  index: -1
+ground
+  rotate: false
+  xy: 2, 254
+  size: 960, 115
+  orig: 960, 115
+  offset: 0, 0
+  index: -1
+medium_cloud
+  rotate: false
+  xy: 964, 1765
+  size: 943, 273
+  orig: 943, 273
+  offset: 0, 0
+  index: -1
+mountain
+  rotate: false
+  xy: 2, 509
+  size: 960, 245
+  orig: 960, 245
+  offset: 0, 0
+  index: -1
+small_cloud
+  rotate: false
+  xy: 964, 1579
+  size: 799, 184
+  orig: 799, 184
+  offset: 0, 0
+  index: -1
