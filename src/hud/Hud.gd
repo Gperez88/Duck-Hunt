@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+class_name Hud
+
 # signals
 
 
@@ -53,11 +55,30 @@ func get_score() -> int:
 func _ready():
 	_initScore()
 
-
 # public methods
+func reload_shotgun():
+	for bullet in bullets:
+		bullet.show()
+
+
 func hide_bullet(bullet_position: int):
 	if bullets.size() -1 >= bullet_position:
 		bullets[bullet_position].hide()
+
+
+func reset_hit_ducks():
+	for hit in duck_hits:
+		hit.set_idle_state()
+
+
+func blink_hit_duck_by_index(index: int):
+	if duck_hits.size() -1 >= index:
+		duck_hits[index].set_blink_state()
+
+
+func killer_hit_duck_by_index(index: int):
+	if duck_hits.size() -1 >= index:
+		duck_hits[index].set_killer_state()
 
 
 func show_info_dialog(content: String):

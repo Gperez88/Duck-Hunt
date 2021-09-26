@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/hud/Hud.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/actors/shotgun/ShotGun.tscn" type="PackedScene" id=2]
@@ -7,12 +7,14 @@
 [ext_resource path="res://src/actors/duck/EasyDuck.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/actors/duck/HardDuck.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/actors/duck/MediumDuck.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/actors/frog/Frog.tscn" type="PackedScene" id=8]
 
 [node name="Wold" type="Node"]
 script = ExtResource( 4 )
 EasyDuck = ExtResource( 5 )
 MediumDuck = ExtResource( 7 )
 HardDuck = ExtResource( 6 )
+Frog = ExtResource( 8 )
 
 [node name="Background" parent="." instance=ExtResource( 3 )]
 z_index = 1
@@ -24,6 +26,20 @@ z_index = 1
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 900, 0 )
 
+[node name="RemoveDogTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RoundHideTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CreateDuckTimer" type="Timer" parent="."]
+
+[node name="WaitTimer" type="Timer" parent="."]
+
 [connection signal="duck_dead" from="." to="." method="_on_Wold_duck_dead"]
 [connection signal="duck_go_away" from="." to="." method="_on_Wold_duck_go_away"]
 [connection signal="shotgun_shoot" from="." to="." method="_on_Wold_shotgun_shoot"]
+[connection signal="timeout" from="RemoveDogTimer" to="." method="_on_RemoveDogTimer_timeout"]
+[connection signal="timeout" from="RoundHideTimer" to="." method="_on_RoundHideTimer_timeout"]
+[connection signal="timeout" from="CreateDuckTimer" to="." method="_on_CreateDuckTimer_timeout"]

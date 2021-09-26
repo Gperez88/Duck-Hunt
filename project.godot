@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/actors/duck/DuckDirection.gd"
 }, {
+"base": "CanvasLayer",
+"class": "Hud",
+"language": "GDScript",
+"path": "res://src/hud/Hud.gd"
+}, {
 "base": "RigidBody2D",
 "class": "ShotGun",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "DuckDirection": "",
+"Hud": "",
 "ShotGun": ""
 }
 

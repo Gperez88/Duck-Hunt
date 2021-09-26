@@ -15,7 +15,7 @@ onready var _shot_fash: ColorRect = $CanvasLayer/FlashColorRect
 
 # private variables
 var _shooting_up = false setget ,is_shoting_up
-var _bullets = 3 setget ,get_bullets # TODO: get count from GameManager
+var _bullets = GameManager.SHOTGUN_BULLETS setget ,get_bullets
 
 # setters and getters
 func is_shoting_up() -> bool:
@@ -26,9 +26,8 @@ func get_bullets() -> int:
 
 # override methods
 func _unhandled_input(event):
-	var started_game = true # TODO: evaluate if game is started on GameManager.
-	
-	if !started_game || _bullets == 0:
+
+	if GameManager.is_started() == false || _bullets == 0:
 		return
 	
 	if event is InputEventMouseButton:
@@ -36,6 +35,10 @@ func _unhandled_input(event):
 			shoot(event.position)
 
 # public methods
+func reload():
+	_bullets = GameManager.SHOTGUN_BULLETS
+
+
 func shoot(position: Vector2):
 	_bullets -= 1
 	_shooting_up = true
