@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/actors/duck/Duck.tscn" type="PackedScene" id=1]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_dead_right.atlastex" type="Texture" id=2]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_up_two.atlastex" type="Texture" id=3]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_side_two.atlastex" type="Texture" id=4]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_side_one.atlastex" type="Texture" id=5]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_side_three.atlastex" type="Texture" id=6]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_up_one.atlastex" type="Texture" id=7]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_dead_left.atlastex" type="Texture" id=8]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_up_three.atlastex" type="Texture" id=9]
+[ext_resource path="res://res/sprites/sprite_pack.duck_medium_shot.atlastex" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "side",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "dead",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "shooted",
+"speed": 5.0
+} ]
+
+[node name="MediumDuck" instance=ExtResource( 1 )]
+type = 1
+value = 500
+velocity = 300
+
+[node name="AnimatedSprite" parent="." index="1"]
+frames = SubResource( 1 )
+animation = "side"
+frame = 2
+playing = true

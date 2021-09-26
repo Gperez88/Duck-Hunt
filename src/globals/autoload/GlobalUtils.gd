@@ -25,13 +25,16 @@ func create_timer(wait_time: int, started: bool = true, one_shot: bool = true):
 
 
 func create_random_timer(from, to):
-	var random_number = random_number(from, to) + 0.1
+	var random_number = random_number_range(from, to)
 	return create_timer(random_number)
 
 
-func random_number(from, to):
-	var rng = RandomNumberGenerator.new()
-	return rng.randf_range(from, to)
+func random_number_range(from, to):
+	return rand_range(from, to) + 0.1
+
+
+func random_number():
+	return randi() % 10 + 1
 
 
 func choose(choises):
