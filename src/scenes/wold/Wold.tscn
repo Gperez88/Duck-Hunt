@@ -29,17 +29,15 @@ position = Vector2( 900, 0 )
 [node name="RemoveDogTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="RoundHideTimer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
 [node name="CreateDuckTimer" type="Timer" parent="."]
 
 [node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="duck_dead" from="." to="." method="_on_Wold_duck_dead"]
 [connection signal="duck_go_away" from="." to="." method="_on_Wold_duck_go_away"]
+[connection signal="frog_dead" from="." to="." method="_on_Wold_frog_dead"]
 [connection signal="shotgun_shoot" from="." to="." method="_on_Wold_shotgun_shoot"]
+[connection signal="info_popup_hide" from="Hud" to="." method="_on_Hud_info_popup_hide"]
 [connection signal="timeout" from="RemoveDogTimer" to="." method="_on_RemoveDogTimer_timeout"]
-[connection signal="timeout" from="RoundHideTimer" to="." method="_on_RoundHideTimer_timeout"]
 [connection signal="timeout" from="CreateDuckTimer" to="." method="_on_CreateDuckTimer_timeout"]

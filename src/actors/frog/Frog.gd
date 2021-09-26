@@ -5,7 +5,7 @@ signal shooted
 
 
 # export variables
-export (int) var velocity = 100
+export (float) var velocity = 500
 export (int) var value = 1500
 
 
@@ -20,7 +20,7 @@ onready var value_label: Label = $CanvasLayer/ValueLabel
 # private variables
 const _side = ["left", "right"]
 
-var _move = Vector2.ZERO
+var _move_value = Vector2.ZERO
 var _side_to_show = null
 var _dead = false setget , is_dead
 
@@ -33,7 +33,7 @@ func is_dead() -> bool:
 func _ready():
 	_side_to_show = GlobalUtils.choose(_side)
 	
-	position.x = get_viewport_rect().size.x if _side_to_show == _side[0] else 0
+	position.x = get_viewport_rect().size.x if _side_to_show == _side[0] else 0.0
 	position.y = GlobalUtils.random_number_range(60, 300)
 	
 	animated_sprite.animation = "fly"
@@ -50,22 +50,24 @@ func _process(delta):
 
 
 # public methods
+func increase_velocity(multiplier: float):
+	velocity += velocity * multiplier
 
 
 # private methods
 func _set_left():
-	_move.x -= 1
+	_move_value.x -= 1
 
 
 func _set_right():
-	_move.x += 1
+	_move_value.x += 1
 
 
 func _move(delta: float):
-	if _move.length() > 0:
-		_move = _move.normalized() * velocity
+	if _move_value.length() > 0:
+		_move_value = _move_value.normalized() * velocity
 
-	position += _move * delta
+	position += _move_value * delta
 
 
 func _remove():
@@ -79,9 +81,9 @@ func _on_VisibilityNotifier_viewport_exited(_viewport):
 
 func _on_Frog_shooted():
 	hit_timer.start()
-	velocity = 200
+	velocity = 100
 
-	get_parent().emit_signal("frog_dead")
+	get_parent().emit_signal("frog_dead", value)
 	
 	value_label.text = str(value)
 	value_label.set_position(position)

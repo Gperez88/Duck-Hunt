@@ -59,14 +59,18 @@ func _process(delta):
 				_reverse_direction()
 			elif _change_direction:
 				_randomize_direction()
+		
 		DuckStates.GOAWAY:
 			get_parent().emit_signal("duck_go_away")
 			velocity = 300
 			_set_direction(Vector2.UP)
+			
 		DuckStates.SHOTED:
 			_set_direction(Vector2.DOWN)
 
 # public methods
+func is_flying() -> bool:
+	return _current_state == DuckStates.FLYING
 
 
 # private methods
@@ -105,7 +109,7 @@ func _set_direction(next: Vector2):
 	_direction.direction = next
 	_change_direction = false
 	
-	if _current_state == DuckStates.FLYING:
+	if _current_state != DuckStates.SHOTED:
 		_change_animation_direction(_direction)
 
 
@@ -198,7 +202,8 @@ func _on_VisibilityNotifier_viewport_exited(_viewport):
 
 
 func _on_GoneTimer_timeout():
-	emit_signal("go_away")
+	if _current_state != DuckStates.SHOTED:
+		emit_signal("go_away")
 
 
 func _on_ChangeDirectionTimer_timeout():

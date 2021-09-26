@@ -3,7 +3,7 @@ extends CanvasLayer
 class_name Hud
 
 # signals
-
+signal info_popup_hide(ref_code)
 
 # export variables
 
@@ -12,7 +12,7 @@ class_name Hud
 onready var score_label: Label = $ScoreLabel
 onready var info_dialog: PopupDialog = $InfoPopup
 onready var info_content_label: Label = $InfoPopup/ContentLabel
-onready var info_dialog_timer: Timer = $InfoDialogTimer
+onready var try_again_label: Label = $TryAgainLabel
 onready var bullets = [
 	$Bullets/BulletThree, 
 	$Bullets/BulletTwo, 
@@ -26,7 +26,6 @@ onready var duck_hits = [
 	$DuckHits/DuckHitFive,
 	$DuckHits/DuckHitSix,
 	$DuckHits/DuckHitSeven,
-	$DuckHits/DuckHitOne,
 	$DuckHits/DuckHitEight,
 	$DuckHits/DuckHitNine,
 	$DuckHits/DuckHitTen,
@@ -56,6 +55,11 @@ func _ready():
 	_initScore()
 
 # public methods
+func reset_score():
+	_score = 0
+	score_label.text = _parse_score(_score)
+
+
 func reload_shotgun():
 	for bullet in bullets:
 		bullet.show()
@@ -71,6 +75,11 @@ func reset_hit_ducks():
 		hit.set_idle_state()
 
 
+func idle_hit_duck_by_index(index: int):
+	if duck_hits.size() -1 >= index:
+		duck_hits[index].set_idle_state()
+
+
 func blink_hit_duck_by_index(index: int):
 	if duck_hits.size() -1 >= index:
 		duck_hits[index].set_blink_state()
@@ -81,15 +90,26 @@ func killer_hit_duck_by_index(index: int):
 		duck_hits[index].set_killer_state()
 
 
-func show_info_dialog(content: String):
+func show_info_dialog(content: String, ref_code: int = -1, timer_hide = 2):
 	info_content_label.text = content
+	
 	info_dialog.popup()
 	
-	info_dialog_timer.start()
+	var timer = GlobalUtils.create_timer(timer_hide)
 	
-	yield(info_dialog_timer, "timeout")
+	yield(timer, "timeout")
 
 	info_dialog.hide()
+	
+	emit_signal("info_popup_hide", ref_code)
+
+
+func show_try_again_label():
+	try_again_label.show()
+
+
+func hide_try_again_label():
+	try_again_label.hide()
 
 
 # private methods
@@ -99,4 +119,7 @@ func _initScore():
 
 
 func _parse_score(value: int) -> String:
-	return str("%08d" % value)
+	return str("%07d" % value)
+
+
+# connect signals

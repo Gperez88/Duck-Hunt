@@ -15,18 +15,25 @@ signal duck_dead(value)
 signal frog_dead(value)
 
 
+# constants
+const ROUND_DIALOG_CODE = 1
+const PERFECT_DIALOG_CODE = 2
+const FINISH_DIALOG_CODE = 3
+const GAME_OVER_DIALOG_CODE = 4
+
+
 # export variables
 export (PackedScene) var EasyDuck
 export (PackedScene) var MediumDuck
 export (PackedScene) var HardDuck
 export (PackedScene) var Frog
 
+
 # onready variables
 onready var shotgun = $ShotGun
 onready var hud = $Hud
 onready var remove_dog_timer: Timer = $RemoveDogTimer
 onready var create_duck_timer: Timer = $CreateDuckTimer
-onready var round_hide_timer: Timer = $RoundHideTimer
 onready var wait_timer: Timer = $WaitTimer
 
 
@@ -48,6 +55,14 @@ func _ready():
 	GameManager.init() # TODO: move to main scene
 	_start()
 
+
+func _input(event):
+	if GameManager.is_game_over():
+		if event is InputEventMouseButton && event.is_pressed():
+			hud.hide_try_again_label()
+			
+			_try_again()
+
 # public methods
 
 
@@ -61,8 +76,21 @@ func _restart():
 	_duck_shown_counter = 0
 	_duck_dead_counter = 0
 	
+	hud.reset_hit_ducks()
+	
 	_reload_shotgun()
-	_reset_hit_ducks(true)
+	_create_dog()
+
+
+func _try_again():
+	_level = 1
+	_duck_shown_counter = 0
+	_duck_dead_counter = 0
+	
+	hud.reset_score()
+	hud.reset_hit_ducks()
+	
+	_reload_shotgun()
 	_create_dog()
 
 
@@ -118,6 +146,7 @@ func _create_frog():
 		_frog = Frog.instance()
 		_frog.z_index = 1
 		_frog.set_process_unhandled_input(true)
+		_frog.increase_velocity(_level * 0.05)
 
 		add_child(_frog)
 
@@ -156,10 +185,6 @@ func _reload_shotgun():
 	hud.reload_shotgun()
 
 
-func _reset_hit_ducks(full_reset: bool):
-	hud.reset_hit_ducks(full_reset)
-
-
 func _blink_current_hit_duck():
 	if _duck_shown_counter <= GameManager.DUCK_COUNT:
 		hud.blink_hit_duck_by_index(_duck_shown_counter -1)
@@ -168,14 +193,13 @@ func _blink_current_hit_duck():
 func _finish():
 	GameManager.end()
 	
-	# TODO: show finish dialog.
+	hud.show_info_dialog("The End", FINISH_DIALOG_CODE, 6)
 
 
 func _game_over():
 	GameManager.game_over()
 	
-	# TODO: show game over dialog.
-	# TODO: show try again label.
+	hud.show_info_dialog("Game Over", GAME_OVER_DIALOG_CODE, 6)
 
 
 func _generate_next_level():
@@ -185,12 +209,10 @@ func _generate_next_level():
 		GameManager.prepare()
 		_level += 1
 		
-		yield($wait_timer, "timeout")
+		yield(wait_timer, "timeout")
 		
 		if _duck_dead_counter == GameManager.DUCK_COUNT:
-			pass
-			# TODO: show perfect dialog.
-			# show_dialog(true, $CanvasLayer/PerfectDialog, str("Perfect\n", PERFECT_VALUE))
+			hud.show_info_dialog(str("Perfect\n", GameManager.PERFECT_VALUE), PERFECT_DIALOG_CODE)
 		else:
 			_restart()
 
@@ -209,15 +231,21 @@ func _is_next_level() -> bool:
 
 # connect signals
 func _on_Wold_shotgun_shoot():
-	var bullet_position = shotgun.get_bullets()
+	var bullets = shotgun.get_bullets()
 	
-	hud.hide_bullet(bullet_position)
+	hud.hide_bullet(bullets)
 	
-	# TODO: - evaluate if have bullet
-	#		- evaluate if duck flying
+	if is_instance_valid(_duck) && bullets <= 0:
+		wait_timer.start()
+		yield(wait_timer, "timeout")
+		
+		if _duck.is_flying():
+			_duck.emit_signal("go_away")
 
 
 func _on_Wold_duck_go_away():
+	hud.idle_hit_duck_by_index(_duck_shown_counter -1)
+	
 	hud.show_info_dialog("Fly Away")
 
 
@@ -231,20 +259,35 @@ func _on_Wold_duck_dead(value):
 		_duck_dead_counter += 1
 
 
+func _on_Wold_frog_dead(value):
+	if is_instance_valid(_frog):
+		
+		hud.set_score(value)
+		
+		_reload_shotgun()
+
+
 func _on_RemoveDogTimer_timeout():
-	# TODO: show round level dialog
-	
-	round_hide_timer.start()
-
-
-func _on_RoundHideTimer_timeout():
-	GameManager.start()
-	
-	# TODO: hide round level dialog
-	
-	create_duck_timer.start()
+	hud.show_info_dialog(str("Round\n", _level), ROUND_DIALOG_CODE)
 
 
 func _on_CreateDuckTimer_timeout():
 	if GameManager.is_started():
 		_evaluate_game()
+
+
+func _on_Hud_info_popup_hide(ref_code):
+	if ref_code == ROUND_DIALOG_CODE:
+		GameManager.start()
+		create_duck_timer.start()
+		
+	elif ref_code == PERFECT_DIALOG_CODE:
+		hud.set_score(GameManager.PERFECT_VALUE)
+		_restart()
+		
+	elif ref_code == FINISH_DIALOG_CODE:
+		hud.show_try_again_label()
+		
+	elif ref_code == GAME_OVER_DIALOG_CODE:
+		hud.show_try_again_label()
+
