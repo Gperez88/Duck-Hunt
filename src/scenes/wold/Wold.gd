@@ -23,6 +23,7 @@ const GAME_OVER_DIALOG_CODE = 4
 
 
 # export variables
+export (PackedScene) var Dog
 export (PackedScene) var EasyDuck
 export (PackedScene) var MediumDuck
 export (PackedScene) var HardDuck
@@ -57,7 +58,7 @@ func _ready():
 
 
 func _input(event):
-	if GameManager.is_game_over():
+	if GameManager.is_game_over() || GameManager.is_ended():
 		if event is InputEventMouseButton && event.is_pressed():
 			hud.hide_try_again_label()
 			
@@ -109,7 +110,10 @@ func _evaluate_game():
 
 
 func _create_dog():
-	# TODO: create dog
+	var dog = Dog.instance()
+	dog.z_index = 2
+	
+	add_child(dog)
 	
 	remove_dog_timer.start()
 
@@ -222,7 +226,11 @@ func _is_pass_next_level() -> bool:
 
 
 func _is_finish_game() -> bool:
-	return _level >= GameManager.MAX_LEVEL
+	return (
+		_level >= GameManager.MAX_LEVEL && 
+		_duck_shown_counter >= GameManager.DUCK_COUNT &&
+		is_instance_valid(_duck) == false
+	)
 
 
 func _is_next_level() -> bool:
@@ -239,7 +247,7 @@ func _on_Wold_shotgun_shoot():
 		wait_timer.start()
 		yield(wait_timer, "timeout")
 		
-		if _duck.is_flying():
+		if is_instance_valid(_duck) && _duck.is_flying():
 			_duck.emit_signal("go_away")
 
 
@@ -268,6 +276,7 @@ func _on_Wold_frog_dead(value):
 
 
 func _on_RemoveDogTimer_timeout():
+	GameManager.start()
 	hud.show_info_dialog(str("Round\n", _level), ROUND_DIALOG_CODE)
 
 
@@ -278,7 +287,6 @@ func _on_CreateDuckTimer_timeout():
 
 func _on_Hud_info_popup_hide(ref_code):
 	if ref_code == ROUND_DIALOG_CODE:
-		GameManager.start()
 		create_duck_timer.start()
 		
 	elif ref_code == PERFECT_DIALOG_CODE:

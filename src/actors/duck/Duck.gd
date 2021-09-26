@@ -11,7 +11,7 @@ var DuckDirection = load("res://src/actors/duck/DuckDirection.gd")
 
 
 # constants
-const ORIGIN_Y = 120
+const ORIGIN_Y = 200
 enum DuckStates {FLYING, SHOTED, GOAWAY, OFFSCREEN}
 
 
@@ -61,7 +61,6 @@ func _process(delta):
 				_randomize_direction()
 		
 		DuckStates.GOAWAY:
-			get_parent().emit_signal("duck_go_away")
 			velocity = 300
 			_set_direction(Vector2.UP)
 			
@@ -195,6 +194,7 @@ func _on_Duck_shooted():
 
 func _on_Duck_go_away():
 	_current_state = DuckStates.GOAWAY
+	get_parent().emit_signal("duck_go_away")
 
 
 func _on_VisibilityNotifier_viewport_exited(_viewport):
