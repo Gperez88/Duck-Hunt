@@ -5,7 +5,7 @@ var direction = Vector2.ZERO
 
 # override methods
 func _init():
-	direction = Vector2()
+	direction = Vector2.ZERO
 
 # public methods
 func is_moving_right() -> bool:

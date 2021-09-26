@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "Duck",
-"language": "GDScript",
-"path": "res://src/actors/duck/Duck.gd"
-}, {
 "base": "Reference",
 "class": "DuckDirection",
 "language": "GDScript",
@@ -25,7 +20,6 @@ _global_script_classes=[ {
 "path": "res://src/actors/shotgun/ShotGun.gd"
 } ]
 _global_script_class_icons={
-"Duck": "",
 "DuckDirection": "",
 "ShotGun": ""
 }

@@ -39,5 +39,5 @@ animations = [ {
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "side"
-frame = 1
+frame = 2
 playing = true
