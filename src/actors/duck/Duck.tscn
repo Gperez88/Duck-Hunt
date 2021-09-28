@@ -28,6 +28,7 @@ wait_time = 0.2
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ValueLabel" type="Label" parent="CanvasLayer"]
+visible = false
 margin_left = -30.2906
 margin_top = -57.9084
 margin_right = 23.7094

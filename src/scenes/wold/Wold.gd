@@ -17,9 +17,10 @@ signal frog_dead(value)
 
 # constants
 const ROUND_DIALOG_CODE = 1
-const PERFECT_DIALOG_CODE = 2
-const FINISH_DIALOG_CODE = 3
-const GAME_OVER_DIALOG_CODE = 4
+const FLY_AWAY_DIALOG_CODE = 2
+const PERFECT_DIALOG_CODE = 3
+const FINISH_DIALOG_CODE = 4
+const GAME_OVER_DIALOG_CODE = 5
 
 
 # export variables
@@ -69,7 +70,6 @@ func _input(event):
 
 # private methods
 func _start():
-
 	_create_dog()
 
 
@@ -208,6 +208,7 @@ func _game_over():
 
 func _generate_next_level():
 	if !is_instance_valid(_duck) && !is_instance_valid(_frog):
+		create_duck_timer.stop()
 		wait_timer.start()
 		
 		GameManager.prepare()
@@ -254,7 +255,8 @@ func _on_Wold_shotgun_shoot():
 func _on_Wold_duck_go_away():
 	hud.idle_hit_duck_by_index(_duck_shown_counter -1)
 	
-	hud.show_info_dialog("Fly Away")
+	hud.show_info_dialog("Fly Away", FLY_AWAY_DIALOG_CODE)
+	create_duck_timer.stop()
 
 
 func _on_Wold_duck_dead(value):
@@ -286,16 +288,12 @@ func _on_CreateDuckTimer_timeout():
 
 
 func _on_Hud_info_popup_hide(ref_code):
-	if ref_code == ROUND_DIALOG_CODE:
+	if [ROUND_DIALOG_CODE, FLY_AWAY_DIALOG_CODE].has(ref_code):
 		create_duck_timer.start()
 		
 	elif ref_code == PERFECT_DIALOG_CODE:
 		hud.set_score(GameManager.PERFECT_VALUE)
 		_restart()
 		
-	elif ref_code == FINISH_DIALOG_CODE:
+	elif [FINISH_DIALOG_CODE, GAME_OVER_DIALOG_CODE].has(ref_code):
 		hud.show_try_again_label()
-		
-	elif ref_code == GAME_OVER_DIALOG_CODE:
-		hud.show_try_again_label()
-

@@ -37,6 +37,7 @@ onready var duck_hits = [
 
 # private variables
 var _score: int = 0 setget set_score,get_score
+var _info_popup_ref_code = -1
 
 
 # setters and getters
@@ -91,6 +92,7 @@ func killer_hit_duck_by_index(index: int):
 
 
 func show_info_dialog(content: String, ref_code: int = -1, timer_hide = 2):
+	_info_popup_ref_code = ref_code
 	info_content_label.text = content
 	
 	info_dialog.popup()
@@ -100,8 +102,6 @@ func show_info_dialog(content: String, ref_code: int = -1, timer_hide = 2):
 	yield(timer, "timeout")
 
 	info_dialog.hide()
-	
-	emit_signal("info_popup_hide", ref_code)
 
 
 func show_try_again_label():
@@ -123,3 +123,5 @@ func _parse_score(value: int) -> String:
 
 
 # connect signals
+func _on_InfoPopup_popup_hide():
+	emit_signal("info_popup_hide", _info_popup_ref_code)

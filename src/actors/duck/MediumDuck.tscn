@@ -42,5 +42,5 @@ velocity = 300
 [node name="AnimatedSprite" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "side"
-frame = 2
+frame = 1
 playing = true
