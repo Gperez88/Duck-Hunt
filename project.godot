@@ -8,10 +8,52 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Reference",
+"class": "DuckDirection",
+"language": "GDScript",
+"path": "res://src/actors/duck/DuckDirection.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Hud",
+"language": "GDScript",
+"path": "res://src/hud/Hud.gd"
+}, {
+"base": "RigidBody2D",
+"class": "ShotGun",
+"language": "GDScript",
+"path": "res://src/actors/shotgun/ShotGun.gd"
+} ]
+_global_script_class_icons={
+"DuckDirection": "",
+"Hud": "",
+"ShotGun": ""
+}
+
 [application]
 
 config/name="Duck Hunt"
+run/main_scene="res://src/scenes/wold/Wold.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GlobalUtils="*res://src/globals/autoload/GlobalUtils.gd"
+GameManager="*res://src/globals/autoload/GameManager.gd"
+
+[display]
+
+window/size/width=960
+window/size/height=640
+window/stretch/mode="2d"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/atlas_importer3/plugin.cfg" )
+
+[gdnative]
+
+singletons=[  ]
 
 [physics]
 
@@ -20,3 +62,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false
